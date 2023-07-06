@@ -1,62 +1,64 @@
-import { useEffect, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import Todos from './components/Todos';
-
-let index = localStorage.getItem('todos')?.length || 0;
+import { TodoContext } from './contexts/TodoContext';
 
 function App() {
-  const [task, setTask] = useState('');
-  const [taskDone, setTaskDone] = useState(false);
-  const [todos, setTodos] = useState(() => {
-    const localTodos = localStorage.getItem('todos');
+  const [taskDescription, setTaskDescription] = useState('');
 
-    if (localTodos) {
-      return JSON.parse(localTodos);
+  const { handleCreateTodo, todos } = useContext(TodoContext);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (taskDescription.trim() === '') {
+      return;
     }
 
-    return [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  });
-
-  const pendingTasks = todos.filter((todo) => !todo.done).length;
-
-  function handleCreateTodo(event) {
-    event.preventDefault();
-
-    const todo = {
-      id: index += 1,
-      description: task,
-      done: taskDone,
-    };
-    setTodos((prevState) => ([...prevState, todo]));
-    setTask('');
+    handleCreateTodo(taskDescription);
+    setTaskDescription('');
   }
 
-  function handleChangeTaskCheck(event) {
-    setTaskDone(event.target.checked);
-  }
+  const pendingTasks = useMemo(() => {
+    return todos.filter((todo) => !todo.done).length;
+  }, [todos]);
 
   return (
-    <main className="w-full max-w-4xl h-max bg-zinc-100 rounded-3xl p-16 mx-16">
+    <main className="w-full max-w-4xl h-max bg-zinc-100 rounded-3xl p-16 pb-2 mx-16 selection:bg-orange-200">
       <header className="mb-11">
         <h1 className="font-normal text-3xl">Welcome back, Jorge</h1>
         <p className="text-base text-slate-400 mt-2">
-          You&apos;ve got
-          {' '}
-          {pendingTasks}
-          {' '}
-          tasks coming up in next days.
+          You&apos;ve got {pendingTasks} tasks coming up in next days.
         </p>
       </header>
 
-      <form onSubmit={handleCreateTodo} className="flex items-center gap-x-4 h-6 my-4 p-5">
-        <input type="checkbox" checked={taskDone} onChange={handleChangeTaskCheck} />
-        <input type="text" name="todo" onChange={(e) => setTask(e.target.value)} value={task} placeholder="Add a new task..." className=" w-full text-sm text-zinc-500 bg-transparent outline-0 " />
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center gap-x-4 h-6 my-4 p-5 border border-orange-100 rounded-md"
+      >
+        <input
+          type="text"
+          name="todo"
+          onChange={(e) => setTaskDescription(e.target.value)}
+          value={taskDescription}
+          placeholder="Add a new task..."
+          className=" w-full text-sm text-zinc-500 bg-transparent outline-none "
+        />
       </form>
 
-      <Todos todos={todos} setTodos={setTodos} onRemoveTask={() => {}} />
+      <Todos />
+
+      <footer className="mt-6">
+        <p className="text-sm text-zinc-400 text-center">
+          Developed by{' '}
+          <a
+            href="https://www.github.com/nascimento-dev-io"
+            className="italic text-orange-300"
+            target="blank"
+          >
+            Jorge Nascimento
+          </a>{' '}
+        </p>
+      </footer>
     </main>
   );
 }
