@@ -13,16 +13,16 @@ A sintaxe dos testes terá a seguinte aparência:
 ```js
 describe('Teste de soma', () => {
   function sum(a, b) {
-      return a + b;
+    return a + b;
   }
 
-  it('deve ser igual a 4',()=>{
-    expect(sum(2,2)).toBe(4);
-  })
+  it('deve ser igual a 4', () => {
+    expect(sum(2, 2)).toBe(4);
+  });
 
   test('também deve ser igual a 4', () => {
-    expect(sum(2,2)).toBe(4);
-  }) 
+    expect(sum(2, 2)).toBe(4);
+  });
 });
 ```
 
@@ -34,7 +34,6 @@ A `toBe()` é um combinador que funciona com `expect()` que permitem fazer decla
 
 > [Documentação Jest](https://jestjs.io/pt-BR/docs/API)
 
-
 ### Por que testar?
 
 A testagem é feita para garantir que sua aplicação está funcionando como foi planejada para seus usuários finais. Ter uma testagem fará com que sua aplicação fique mais robusta e menos propensa a erros. É uma maneira de verificar que seu código está fazendo o que os desenvolvedores projetaram.
@@ -42,7 +41,7 @@ A testagem é feita para garantir que sua aplicação está funcionando como foi
 Potenciais desvantagens:
 
 - Escrever testes consome muito tempo e é difícil.
-- Em certos cenários, executar testes em Integração Contínua (em inglês, *Continuous Integration*, ou CI) pode ter um custo em dinheiro.
+- Em certos cenários, executar testes em Integração Contínua (em inglês, _Continuous Integration_, ou CI) pode ter um custo em dinheiro.
 - Se feito incorretamente, pode gerar falsos positivos. Os testes passarão, mas a aplicação não funcionará como se espera.
 - Pode gerar falsos negativos. Os testes falharão, mas a aplicação funcionará como pretendida.
 
@@ -74,13 +73,16 @@ Os testes com **shallow()** apenas imprimem um único componente, aquele que est
 
 ### Tipos de Testes
 
-**Teste unitário**: teste de uma parte isolada da aplicação, normalmente feita em combinação com o teste com shallow(). 
+**Teste unitário**: teste de uma parte isolada da aplicação, normalmente feita em combinação com o teste com shallow().
+
 - **Exemplo**: um componente renderizado com props (propriedades) padrão.
 
-**Teste de integração**: testa se as partes distintas funcionam ou se integram corretamente entre si. Normalmente, é feito na criação ou na renderização do componente. 
+**Teste de integração**: testa se as partes distintas funcionam ou se integram corretamente entre si. Normalmente, é feito na criação ou na renderização do componente.
+
 - **Exemplo**: teste se um componente filho pode atualizar o state no componente pai.
 
-**Teste de ponta a ponta**: normalmente, é uma combinação de várias etapas, combinando testes unitários e testes de integração dentro de uma etapa maior, geralmente com pouco mock (simulação). Os testes são feitos em um navegador simulado e podem ocorrer ou não enquanto o teste de interface está rodando. 
+**Teste de ponta a ponta**: normalmente, é uma combinação de várias etapas, combinando testes unitários e testes de integração dentro de uma etapa maior, geralmente com pouco mock (simulação). Os testes são feitos em um navegador simulado e podem ocorrer ou não enquanto o teste de interface está rodando.
+
 - **Exemplo**: testagem de um fluxo inteiro de autenticação.
 
 ### Outros conceitos
@@ -89,7 +91,7 @@ Os testes com **shallow()** apenas imprimem um único componente, aquele que est
 O teste de snapshot permite você ver como seu componente se alterou desde o último teste, linha por linha. As linhas de código que sofreram mudanças são conhecidas como diff, abreviação em inglês para diferenças.
 
 **Integração contínua**
-Rastrear e rodar todos esses testes manualmente pode se tornar uma tarefa um pouco tediosa. Para resolver isso, temos a integração contínua (em inglês, *Continuous Integration*, ou CI), que é uma maneira de automatizar nossos testes continuamente.
+Rastrear e rodar todos esses testes manualmente pode se tornar uma tarefa um pouco tediosa. Para resolver isso, temos a integração contínua (em inglês, _Continuous Integration_, ou CI), que é uma maneira de automatizar nossos testes continuamente.
 
 **Testes de cobertura**
 Os testes de cobertura nos dão um relatório que, basicamente, nos diz o quanto de nosso código está sendo testado.

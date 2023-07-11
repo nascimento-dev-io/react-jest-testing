@@ -13,8 +13,17 @@ module.exports = {
   ],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh', 'react-hooks', 'jest-dom', 'testing-library'],
+  plugins: [
+    'prettier',
+    'react-refresh',
+    'react-hooks',
+    'jest-dom',
+    'testing-library',
+  ],
   rules: {
+    'prettier/prettier': 'error',
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
     'react-refresh/only-export-components': 'warn',
     'react/no-unescaped-entities': 'off',
     'react/jsx-no-bind': [

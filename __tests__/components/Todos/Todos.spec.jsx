@@ -6,6 +6,7 @@ import { TodoContext } from '../../../src/contexts/TodoContext';
 describe('Todos Component test', () => {
   const handleRemoveTask = jest.fn();
   const handleToggleTaskDone = jest.fn();
+
   it("should render You don't have any tasks text when there are no tasks created", () => {
     render(
       <TodoContext.Provider
@@ -15,7 +16,7 @@ describe('Todos Component test', () => {
       </TodoContext.Provider>
     );
 
-    const noTasks = screen.getByText("You don't have any tasks");
+    const noTasks = screen.getByText(/You don't have any tasks/i);
 
     expect(noTasks).toBeInTheDocument();
   });

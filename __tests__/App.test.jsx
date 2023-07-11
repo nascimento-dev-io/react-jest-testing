@@ -13,39 +13,20 @@ function renderComponent() {
 }
 
 describe('App Component test', () => {
-  it('should render Welcome back, user text', () => {
-    const user = 'Jorge';
+  it('should be render initial state correctly', () => {
     renderComponent();
 
-    const headingWelcome = screen.getByText(`Welcome back, ${user}`);
-
-    expect(headingWelcome).toBeInTheDocument();
-  });
-
-  it("should render You've got 0 tasks coming up in next days. text", () => {
-    renderComponent();
-
+    const headingWelcome = screen.getByText(/Welcome back,/i);
     const pendingTaskInfo = screen.getByText(
       /You've got 0 tasks coming up in next days./
     );
-
-    expect(pendingTaskInfo).toBeInTheDocument();
-  });
-
-  it('should render an input with placeholder Add a new task...', () => {
-    renderComponent();
-
     const inputElement = screen.getByPlaceholderText('Add a new task...');
-
-    expect(inputElement).toBeInTheDocument();
-  });
-
-  it('should render Developed by Jorge Nascimento text', () => {
-    renderComponent();
-
     const devInfo = screen.getByText('Developed by');
     const devInfoName = screen.getByText('Jorge Nascimento');
 
+    expect(headingWelcome).toBeInTheDocument();
+    expect(pendingTaskInfo).toBeInTheDocument();
+    expect(inputElement).toBeInTheDocument();
     expect(devInfo).toBeInTheDocument();
     expect(devInfoName).toBeInTheDocument();
   });

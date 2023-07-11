@@ -19,7 +19,7 @@ describe('Task Component test', () => {
     expect(screen.getByText(todo.description)).toBeInTheDocument();
   });
 
-  it('should be render correctly', () => {
+  it('should be render correctly when task done', () => {
     render(
       <TodoProvider>
         <Task todo={{ ...todo, done: true }} />{' '}

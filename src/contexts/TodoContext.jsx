@@ -5,18 +5,18 @@ export const TodoContext = React.createContext({});
 
 function TodoProvider({ children }) {
   const [todos, setTodos] = React.useState(() => {
-    const localTodos = localStorage.getItem('todos');
+    const hasLocalTodos = localStorage.getItem('todos');
 
-    if (localTodos) {
-      return JSON.parse(localTodos);
+    if (hasLocalTodos) {
+      return JSON.parse(hasLocalTodos);
     }
 
     return [];
   });
 
   const handleToggleTaskDone = useCallback(
-    (id) => {
-      const updatedTodos = todos.map((todo) => {
+    id => {
+      const updatedTodos = todos.map(todo => {
         if (todo.id === id) {
           return {
             ...todo,
@@ -30,18 +30,18 @@ function TodoProvider({ children }) {
     [todos]
   );
 
-  const handleCreateTodo = useCallback((taskDescription) => {
+  const handleCreateTodo = useCallback(taskDescription => {
     const todo = {
       id: (Math.random() * 100).toString(),
       description: taskDescription,
       done: false,
     };
-    setTodos((prevState) => [...prevState, todo]);
+    setTodos(prevState => [...prevState, todo]);
   }, []);
 
   const handleRemoveTask = useCallback(
-    (id) => {
-      const updatedTodos = todos.filter((todo) => todo.id !== id);
+    id => {
+      const updatedTodos = todos.filter(todo => todo.id !== id);
       setTodos(updatedTodos);
     },
     [todos]
