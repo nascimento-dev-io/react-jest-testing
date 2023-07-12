@@ -10,16 +10,17 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (taskDescription.trim() === '') {
+    const description = taskDescription.trim();
+    if (description === '') {
       return;
     }
 
-    handleCreateTodo(taskDescription);
+    handleCreateTodo(description);
     setTaskDescription('');
   }
 
   const pendingTasks = useMemo(() => {
-    return todos.filter((todo) => !todo.done).length;
+    return todos.filter(todo => !todo.done).length;
   }, [todos]);
 
   return (
@@ -38,7 +39,7 @@ function App() {
         <input
           type="text"
           name="todo"
-          onChange={(e) => setTaskDescription(e.target.value)}
+          onChange={e => setTaskDescription(e.target.value)}
           value={taskDescription}
           placeholder="Add a new task..."
           className=" w-full text-sm text-zinc-500 bg-transparent outline-none "

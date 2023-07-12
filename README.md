@@ -1,4 +1,4 @@
-## Teste de Software + React
+## Testando aplicações em React
 
 Vamos começar pelo início e discutir o que é testagem. Testagem é um processo de três passos que se parece assim:
 
@@ -59,21 +59,9 @@ Parece que você está testando funcionalidades, mas, na verdade, não está. Vo
 
 **Bibliotecas externas**: não é seu trabalho testá-las. Quem precisa fazer isso são os criadores delas. Se você não tem certeza se a biblioteca foi testada, você não deve usá-la ou deve ler o código-fonte para ver se o autor incluiu testes.
 
-### Testes com shallow x testes com mount
-
-Testes com **mount()**, de fato, executam o código html, css e js como um navegador faria, mas de maneira simulada. Eles não renderizam ou imprimem nada na interface, mas agem como um navegador da web simulado e executam o código em segundo plano.
-
-Não perder tempo imprimindo nada na interface torna os testes muito mais rápidos. No entanto, testes com **mount()** ainda são bem mais lentos que testes com **shallow()**.
-
-É por isso que você desmonta ou faz a limpeza do componente depois de cada teste. É quase como uma aplicação em funcionamento. Um teste acabará afetando o outro.
-
-Testes com **mount()/render()** são tipicamente usados para testes de integração, enquanto testes com **shallow()** são usados para testes unitários.
-
-Os testes com **shallow()** apenas imprimem um único componente, aquele que estamos testando. Por não renderizar componentes filhos, conseguimos testar nossos componentes em isolamento.
-
 ### Tipos de Testes
 
-**Teste unitário**: teste de uma parte isolada da aplicação, normalmente feita em combinação com o teste com shallow().
+**Teste unitário**: teste de uma parte isolada da aplicação, que não depende de outras partes.
 
 - **Exemplo**: um componente renderizado com props (propriedades) padrão.
 

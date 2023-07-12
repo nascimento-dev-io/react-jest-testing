@@ -14,7 +14,7 @@ function Task({ todo }) {
         {todo.description}
       </p>
 
-      <Button todoId={todo.id} onClick={handleRemoveTask} />
+      <Button role="button" todoId={todo.id} onClick={handleRemoveTask} />
     </li>
   );
 }

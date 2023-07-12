@@ -22,7 +22,7 @@ describe('Task Component test', () => {
   it('should be render correctly when task done', () => {
     render(
       <TodoProvider>
-        <Task todo={{ ...todo, done: true }} />{' '}
+        <Task todo={{ ...todo, done: true }} />
       </TodoProvider>
     );
 
